@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    container_name: fers_delivery_api
+    platform: linux/arm64
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./www:/var/www/html
