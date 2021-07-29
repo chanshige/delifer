@@ -7,8 +7,13 @@ namespace Fer\Deli\Module;
 use BEAR\Dotenv\Dotenv;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
+use BEAR\Resource\Module\AttributeModule;
+use Fer\Deli\Extend\CandyHouse\Module\SesameModule;
+use Fer\Deli\Extend\SlackLoggerHandler\SlackLoggerHandlerModule;
+use Fer\Deli\Service\SmartLock\Module\SmartLockServiceModule;
 
 use function dirname;
+use function getenv;
 
 class AppModule extends AbstractAppModule
 {
@@ -16,5 +21,11 @@ class AppModule extends AbstractAppModule
     {
         (new Dotenv())->load(dirname(__DIR__, 2));
         $this->install(new PackageModule());
+        $this->install(new AttributeModule());
+        // Extend...
+        $this->install(new SlackLoggerHandlerModule());
+        $this->install(new SesameModule(getenv('SESAME_API_KEY')));
+        // Service...
+        $this->install(new SmartLockServiceModule());
     }
 }
