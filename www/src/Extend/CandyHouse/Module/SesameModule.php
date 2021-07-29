@@ -14,7 +14,7 @@ use Ray\Di\Scope;
 class SesameModule extends AbstractModule
 {
     public function __construct(
-        private string $authToken,
+        private string $apiKey,
         ?AbstractModule $module = null
     ) {
         parent::__construct($module);
@@ -22,7 +22,7 @@ class SesameModule extends AbstractModule
 
     protected function configure(): void
     {
-        $this->bind()->annotatedWith('sesame_auth_token')->toInstance($this->authToken);
+        $this->bind()->annotatedWith('sesame_api_key')->toInstance($this->apiKey);
         $this->bind(GuzzleClientInterface::class)
             ->annotatedWith('sesame_client')
             ->toProvider(GuzzleProvider::class);

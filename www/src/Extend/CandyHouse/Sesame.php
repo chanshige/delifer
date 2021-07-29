@@ -19,10 +19,10 @@ use function sprintf;
 
 final class Sesame implements SesameInterface
 {
-    #[Named('client=sesame_client, authToken=sesame_auth_token')]
+    #[Named('client=sesame_client, apiKey=sesame_api_key')]
     public function __construct(
         private ClientInterface $client,
-        private string $authToken
+        private string $apiKey
     ) {
     }
 
@@ -48,7 +48,7 @@ final class Sesame implements SesameInterface
     {
         $headers = [
             RequestOptions::HEADERS => [
-                'x-api-key' => $this->authToken,
+                'x-api-key' => $this->apiKey,
             ],
         ];
 
