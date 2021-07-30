@@ -9,15 +9,22 @@ use Psr\Log\LoggerInterface;
 use Ray\Di\AbstractModule;
 use Ray\Di\Scope;
 
-use function getenv;
-
 class SlackLoggerHandlerModule extends AbstractModule
 {
+    public function __construct(
+        private string $webhook,
+        private string $channel,
+        private string $username,
+        ?AbstractModule $module = null
+    ) {
+        parent::__construct($module);
+    }
+
     protected function configure(): void
     {
-        $this->bind()->annotatedWith('slack_webhook_url')->toInstance(getenv('LOG_SLACK_WEBHOOK_URL'));
-        $this->bind()->annotatedWith('slack_channel')->toInstance(getenv('LOG_SLACK_CHANNEL'));
-        $this->bind()->annotatedWith('slack_username')->toInstance(getenv('LOG_SLACK_USERNAME'));
+        $this->bind()->annotatedWith('slack_webhook_url')->toInstance($this->webhook);
+        $this->bind()->annotatedWith('slack_channel')->toInstance($this->channel);
+        $this->bind()->annotatedWith('slack_username')->toInstance($this->username);
         $this->bind(LoggerInterface::class)->annotatedWith(SlackLogger::class)
             ->toProvider(SlackLoggerHandlerProvider::class)
             ->in(Scope::SINGLETON);
