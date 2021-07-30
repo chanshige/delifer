@@ -11,18 +11,13 @@ use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use Ray\Di\AbstractModule;
 use Ray\Di\Scope;
 
+use function getenv;
+
 class SesameModule extends AbstractModule
 {
-    public function __construct(
-        private string $apiKey,
-        ?AbstractModule $module = null
-    ) {
-        parent::__construct($module);
-    }
-
     protected function configure(): void
     {
-        $this->bind()->annotatedWith('sesame_api_key')->toInstance($this->apiKey);
+        $this->bind()->annotatedWith('sesame_api_key')->toInstance(getenv('SESAME_API_KEY'));
         $this->bind(GuzzleClientInterface::class)
             ->annotatedWith('sesame_client')
             ->toProvider(GuzzleProvider::class);

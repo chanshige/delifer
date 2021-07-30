@@ -7,6 +7,7 @@ namespace Fer\Deli\Extend\SlackLoggerHandler;
 use Fer\Deli\Extend\SlackLoggerHandler\Annotation\SlackLogger;
 use Psr\Log\LoggerInterface;
 use Ray\Di\AbstractModule;
+use Ray\Di\Scope;
 
 use function getenv;
 
@@ -18,6 +19,7 @@ class SlackLoggerHandlerModule extends AbstractModule
         $this->bind()->annotatedWith('slack_channel')->toInstance(getenv('LOG_SLACK_CHANNEL'));
         $this->bind()->annotatedWith('slack_username')->toInstance(getenv('LOG_SLACK_USERNAME'));
         $this->bind(LoggerInterface::class)->annotatedWith(SlackLogger::class)
-            ->toProvider(SlackLoggerHandlerProvider::class);
+            ->toProvider(SlackLoggerHandlerProvider::class)
+            ->in(Scope::SINGLETON);
     }
 }

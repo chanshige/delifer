@@ -10,10 +10,10 @@ use BEAR\Package\PackageModule;
 use BEAR\Resource\Module\AttributeModule;
 use Fer\Deli\Extend\CandyHouse\Module\SesameModule;
 use Fer\Deli\Extend\SlackLoggerHandler\SlackLoggerHandlerModule;
+use Fer\Deli\Service\Formatter\Module\FormatterModule;
 use Fer\Deli\Service\SmartLock\Module\SmartLockServiceModule;
 
 use function dirname;
-use function getenv;
 
 class AppModule extends AbstractAppModule
 {
@@ -24,8 +24,9 @@ class AppModule extends AbstractAppModule
         $this->install(new AttributeModule());
         // Extend...
         $this->install(new SlackLoggerHandlerModule());
-        $this->install(new SesameModule(getenv('SESAME_API_KEY')));
+        $this->install(new SesameModule());
         // Service...
+        $this->install(new FormatterModule());
         $this->install(new SmartLockServiceModule());
     }
 }
