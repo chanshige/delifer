@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Fer\Deli\Service\SmartLock;
 
 use Fer\Deli\Extend\CandyHouse\Action\Command;
+use Fer\Deli\Extend\CandyHouse\Contracts\CommandActionInterface;
 use Fer\Deli\Extend\CandyHouse\Exception\SesameException;
 use Koriym\HttpConstants\StatusCode;
 
@@ -17,7 +18,7 @@ class Unlock extends AbstractSmartLock
         try {
             $device = $this->resolver->resolve($room->getValue());
 
-            $command = new Command(cmd: Command::UNLOCK, uuid: $device->uuid(), key: $device->key());
+            $command = new Command(cmd: CommandActionInterface::UNLOCK, uuid: $device->uuid(), key: $device->key());
             $command->history($comment);
 
             $sesame = ($this->sesame)($command);
