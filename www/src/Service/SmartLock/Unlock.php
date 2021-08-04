@@ -18,7 +18,7 @@ class Unlock extends AbstractSmartLock
         try {
             $device = $this->resolver->resolve($room->getValue());
 
-            $command = new Command(cmd: CommandActionInterface::UNLOCK, uuid: $device->uuid(), key: $device->key());
+            $command = new Command(CommandActionInterface::UNLOCK, $device->uuid(), $device->key());
             $command->history($comment);
 
             $sesame = ($this->sesame)($command);

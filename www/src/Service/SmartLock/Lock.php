@@ -18,7 +18,7 @@ class Lock extends AbstractSmartLock
         try {
             $device = $this->resolver->resolve($room->getValue());
 
-            $command = new Command(cmd: CommandActionInterface::LOCK, uuid: $device->uuid(), key: $device->key());
+            $command = new Command(CommandActionInterface::LOCK, $device->uuid(), $device->key());
             $command->history($comment);
 
             $sesame = ($this->sesame)($command);

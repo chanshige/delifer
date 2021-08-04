@@ -52,7 +52,8 @@ final class Sesame implements SesameInterface
             ],
         ];
 
-        if (count($payload = $action->payload()) === 0) {
+        $payload = $action->payload();
+        if (count($payload) === 0) {
             return $headers;
         }
 

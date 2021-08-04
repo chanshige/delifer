@@ -11,6 +11,9 @@ use function sprintf;
 
 class Status extends AbstractSmartLock
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function run(Actor\Room $room): array
     {
         try {

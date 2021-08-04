@@ -18,7 +18,7 @@ class Toggle extends AbstractSmartLock
         try {
             $device = $this->resolver->resolve($room->getValue());
 
-            $command = new Command(cmd: CommandActionInterface::TOGGLE, uuid: $device->uuid(), key: $device->key());
+            $command = new Command(CommandActionInterface::TOGGLE, $device->uuid(), $device->key());
             $command->history($comment);
 
             $sesame = ($this->sesame)($command);
