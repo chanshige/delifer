@@ -7,6 +7,7 @@ namespace Fer\Deli\Extend\CandyHouse\Action;
 use Fer\Deli\Extend\CandyHouse\Contracts\ActionInterface;
 
 use function array_filter;
+use function count;
 use function get_object_vars;
 
 abstract class AbstractAction implements ActionInterface
@@ -17,5 +18,10 @@ abstract class AbstractAction implements ActionInterface
     public function payload(): array
     {
         return array_filter(get_object_vars($this), static fn ($v) => $v !== null);
+    }
+
+    public function has(): bool
+    {
+        return count($this->payload()) > 0;
     }
 }

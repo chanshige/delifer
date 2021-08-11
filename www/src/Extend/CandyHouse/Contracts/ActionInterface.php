@@ -16,6 +16,8 @@ interface ActionInterface
      */
     public function payload(): array;
 
+    public function has(): bool;
+
     public function method(): string;
 
     public function __toString(): string;
