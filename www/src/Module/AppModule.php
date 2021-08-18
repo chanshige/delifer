@@ -11,7 +11,8 @@ use BEAR\Resource\Module\AttributeModule;
 use Fer\Deli\Extend\CandyHouse\Module\SesameModule;
 use Fer\Deli\Extend\SlackLoggerHandler\SlackLoggerHandlerModule;
 use Fer\Deli\Extend\VerifySlackRequestSignature\VerifySlackRequestSignatureModule;
-use Fer\Deli\Service\Formatter\Module\FormatterModule;
+use Fer\Deli\Service\Extractor\Module\ExtractorServiceModule;
+use Fer\Deli\Service\Formatter\Module\FormatterServiceModule;
 use Fer\Deli\Service\SmartLock\Module\SmartLockServiceModule;
 
 use function dirname;
@@ -33,7 +34,8 @@ class AppModule extends AbstractAppModule
         $this->install(new SesameModule(getenv('SESAME_API_KEY')));
         $this->install(new VerifySlackRequestSignatureModule(getenv('SLACK_SIGNING_SECRET')));
         // Service...
-        $this->install(new FormatterModule());
+        $this->install(new ExtractorServiceModule());
+        $this->install(new FormatterServiceModule());
         $this->install(new SmartLockServiceModule());
     }
 }

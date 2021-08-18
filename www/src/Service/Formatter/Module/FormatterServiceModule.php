@@ -9,7 +9,7 @@ use Fer\Deli\Service\Formatter\SesameDeviceFormatterInterface;
 use Ray\Di\AbstractModule;
 use Ray\Di\Scope;
 
-class FormatterModule extends AbstractModule
+class FormatterServiceModule extends AbstractModule
 {
     protected function configure(): void
     {
