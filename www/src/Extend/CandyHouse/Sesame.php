@@ -11,7 +11,6 @@ use Fer\Deli\Extend\CandyHouse\Exception\SesameException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use Koriym\HttpConstants\MediaType;
 use Ray\Di\Di\Named;
 
 use function sprintf;
@@ -31,7 +30,7 @@ final class Sesame implements SesameInterface
             $response = $this->client->request(
                 $action->method(),
                 $this->endpoint((string) $action),
-                $this->requestOptions($action)
+                $this->requestHeaders() + $this->requestOptions($action)
             );
 
             return new Response($response);
@@ -45,24 +44,28 @@ final class Sesame implements SesameInterface
      */
     private function requestOptions(ActionInterface $action): array
     {
-        $headers = [
-            RequestOptions::HEADERS => [
-                'Content-Type' => MediaType::APPLICATION_JSON,
-                'x-api-key' => $this->apiKey,
-            ],
-        ];
-
         if (! $action->has()) {
-            return $headers;
+            return [];
         }
 
         $type = match ($action->method()) {
             ActionInterface::GET => RequestOptions::QUERY,
             ActionInterface::POST => RequestOptions::JSON,
-            default => RequestOptions::BODY,
         };
 
-        return $headers + [$type => $action->payload()];
+        return [$type => $action->payload()];
+    }
+
+    /**
+     * @return array<string, array<string, string>>
+     */
+    private function requestHeaders(): array
+    {
+        return [
+            RequestOptions::HEADERS => [
+                'x-api-key' => $this->apiKey,
+            ],
+        ];
     }
 
     private function endpoint(string $endpoint): string
