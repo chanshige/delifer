@@ -6,7 +6,7 @@ namespace Fer\Deli\Extend\Console\Contracts;
 
 interface InputInterface
 {
-    public function parse(string $delimiter = ' '): void;
+    public function parse(string $delimiter = ' '): self;
 
     public function getArgument(string $name): mixed;
 

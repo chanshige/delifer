@@ -21,7 +21,7 @@ final class Input implements InputInterface
     ) {
     }
 
-    public function parse(string $delimiter = ' '): void
+    public function parse(string $delimiter = ' '): self
     {
         $token = (new UnicodeString($this->text))->collapseWhitespace();
 
@@ -34,6 +34,8 @@ final class Input implements InputInterface
 
             $this->arguments[$argument->getName()] = (string) ($parsed[$key] ?? $argument->getDefault());
         }
+
+        return $this;
     }
 
     public function getArgument(string $name): mixed
