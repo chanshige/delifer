@@ -8,7 +8,7 @@ use BEAR\Dotenv\Dotenv;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
 use BEAR\Resource\Module\AttributeModule;
-use Fer\Deli\Extend\CandyHouse\Module\SesameModule;
+use Fer\Deli\Extend\Sesame\SesameModule;
 use Fer\Deli\Extend\SlackLoggerHandler\SlackLoggerHandlerModule;
 use Fer\Deli\Extend\VerifySlackRequestSignature\VerifySlackRequestSignatureModule;
 use Fer\Deli\Service\Extractor\Module\ExtractorServiceModule;

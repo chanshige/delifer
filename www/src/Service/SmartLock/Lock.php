@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Fer\Deli\Service\SmartLock;
 
-use Fer\Deli\Extend\CandyHouse\Action\Command;
-use Fer\Deli\Extend\CandyHouse\Contracts\CommandActionInterface;
-use Fer\Deli\Extend\CandyHouse\Exception\SesameException;
+use Chanshige\SmartLock\Action\Lock as LockAction;
+use Chanshige\SmartLock\Exception\SesameException;
 use Koriym\HttpConstants\StatusCode;
 
 use function sprintf;
@@ -17,11 +16,7 @@ class Lock extends AbstractSmartLock
     {
         try {
             $device = $this->resolver->resolve($room->getValue());
-
-            $command = new Command(CommandActionInterface::LOCK, $device->uuid(), $device->key());
-            $command->history($comment);
-
-            $sesame = ($this->sesame)($command);
+            $sesame = ($this->sesame)($device->uuid(), new LockAction($device->key(), $comment));
 
             return $sesame->statusCode() === StatusCode::OK;
         } catch (SesameException $e) {

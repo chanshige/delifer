@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Fer\Deli\Service\SmartLock;
 
-use Fer\Deli\Extend\CandyHouse\Action\Status as StatusAction;
-use Fer\Deli\Extend\CandyHouse\Exception\SesameException;
+use Chanshige\SmartLock\Action\Status as StatusAction;
+use Chanshige\SmartLock\Exception\SesameException;
 
 use function sprintf;
 
@@ -18,7 +18,7 @@ class Status extends AbstractSmartLock
     {
         try {
             $device = $this->resolver->resolve($room->getValue());
-            $sesame = ($this->sesame)(new StatusAction($device->uuid()));
+            $sesame = ($this->sesame)($device->uuid(), new StatusAction());
 
             return $sesame->toArray();
         } catch (SesameException $e) {
