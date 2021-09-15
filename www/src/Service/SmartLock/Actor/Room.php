@@ -20,6 +20,9 @@ class Room extends Enum
         self::CAIRO => 'ノーサイ-2F-中-カイロ（Cairo）',
     ];
 
+    /**
+     * @psalm-pure
+     */
     public function getName(): string
     {
         return self::$name[$this->getValue()];
