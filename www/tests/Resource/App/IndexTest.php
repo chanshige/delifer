@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Fer\Deli\Resource\Page;
+namespace Fer\Deli\Resource\App;
 
 use BEAR\Resource\ResourceInterface;
 use Fer\Deli\Injector;
+use Koriym\HttpConstants\StatusCode;
 use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase
@@ -14,14 +15,14 @@ class IndexTest extends TestCase
 
     protected function setUp(): void
     {
-        $injector = Injector::getInstance('app');
+        $injector = Injector::getInstance('api-app');
         $this->resource = $injector->getInstance(ResourceInterface::class);
     }
 
     public function testOnGet(): void
     {
-        $ro = $this->resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
-        $this->assertSame(200, $ro->code);
-        $this->assertSame('Hello BEAR.Sunday', $ro->body['greeting']);
+        $ro = $this->resource->get('app://self/index');
+        $this->assertSame(StatusCode::OK, $ro->code);
+        $this->assertSame(['greeting' => 'Welcome to Fer\'s delivery service api.'], $ro->body);
     }
 }

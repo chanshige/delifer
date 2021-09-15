@@ -15,8 +15,8 @@
     <testsuite name="hypermedia">
       <directory>tests/Hypermedia</directory>
     </testsuite>
-    <testsuite name="http">
-      <directory>tests/Http</directory>
+    <testsuite name="extend">
+      <directory>tests/Extend</directory>
     </testsuite>
   </testsuites>
 </phpunit>

@@ -17,7 +17,7 @@ class WorkflowTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->injector = Injector::getInstance('app');
+        $this->injector = Injector::getInstance('api-app');
         $this->resource = $this->injector->getInstance(ResourceInterface::class);
     }
 
