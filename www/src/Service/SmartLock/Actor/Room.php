@@ -15,16 +15,13 @@ class Room extends Enum
     public const CAIRO = 'cairo';
 
     /** @var array<string, string> */
-    private static array $name = [
+    private array $name = [
         self::HANOI => 'ノーサイ-2F-長-ハノイ（Ha noi）',
         self::CAIRO => 'ノーサイ-2F-中-カイロ（Cairo）',
     ];
 
-    /**
-     * @psalm-pure
-     */
     public function getName(): string
     {
-        return self::$name[$this->getValue()];
+        return $this->name[$this->getValue()];
     }
 }
