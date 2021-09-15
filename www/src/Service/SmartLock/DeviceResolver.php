@@ -8,7 +8,6 @@ use Fer\Deli\Service\SmartLock\Device\DeviceInterface;
 use Ray\Di\Di\Named;
 use RuntimeException;
 
-use function assert;
 use function sprintf;
 
 class DeviceResolver implements DeviceResolverInterface
@@ -29,13 +28,12 @@ class DeviceResolver implements DeviceResolverInterface
     {
         if (
             isset($this->deviceByName[$name])
-            && isset($this->extractors[$this->deviceByName[$name]])
+            && isset($this->devices[$this->deviceByName[$name]])
         ) {
             return $this->devices[$this->deviceByName[$name]];
         }
 
         foreach ($this->devices as $i => $extractor) {
-            assert($extractor instanceof DeviceInterface);
             if ($extractor->supports($name)) {
                 $this->deviceByName[$name] = $i;
 

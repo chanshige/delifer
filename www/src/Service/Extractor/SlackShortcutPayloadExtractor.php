@@ -22,8 +22,11 @@ class SlackShortcutPayloadExtractor implements SlackShortcutPayloadExtractorInte
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function convertToArray(string $data): array
     {
-        return Utils::jsonDecode($data, true);
+        return (array) Utils::jsonDecode($data, true);
     }
 }

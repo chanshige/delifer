@@ -19,7 +19,7 @@ class SlackLoggerHandlerProvider implements ProviderInterface
     ) {
     }
 
-    public function get()
+    public function get(): Logger
     {
         return (new Logger('delifer_logger'))
             ->pushHandler((new SlackWebhookHandler(

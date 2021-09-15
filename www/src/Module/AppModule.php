@@ -27,12 +27,12 @@ class AppModule extends AbstractAppModule
         $this->install(new AttributeModule());
         // Extend...
         $this->install(new SlackLoggerHandlerModule(
-            getenv('LOG_SLACK_WEBHOOK_URL'),
-            getenv('LOG_SLACK_CHANNEL'),
-            getenv('LOG_SLACK_USERNAME')
+            getenv('LOG_SLACK_WEBHOOK_URL') ?: '',
+            getenv('LOG_SLACK_CHANNEL') ?: '',
+            getenv('LOG_SLACK_USERNAME') ?: ''
         ));
-        $this->install(new SesameModule(getenv('SESAME_API_KEY')));
-        $this->install(new VerifySlackRequestSignatureModule(getenv('SLACK_SIGNING_SECRET')));
+        $this->install(new SesameModule(getenv('SESAME_API_KEY') ?: ''));
+        $this->install(new VerifySlackRequestSignatureModule(getenv('SLACK_SIGNING_SECRET') ?: ''));
         // Service...
         $this->install(new ExtractorServiceModule());
         $this->install(new FormatterServiceModule());

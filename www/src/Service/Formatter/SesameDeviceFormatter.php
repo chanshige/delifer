@@ -28,8 +28,12 @@ final class SesameDeviceFormatter implements SesameDeviceFormatterInterface
 
     private function convertTimestamp(string $timestamp): string
     {
-        return DateTimeImmutable::createFromFormat('U', $timestamp)
-            ->setTimezone(new DateTimeZone('Asia/Tokyo'))
+        $dateTime = DateTimeImmutable::createFromFormat('U', $timestamp);
+        if (! $dateTime) {
+            return '';
+        }
+
+        return $dateTime->setTimezone(new DateTimeZone('Asia/Tokyo'))
             ->format('Y-m-d H:i:s');
     }
 }

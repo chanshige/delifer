@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fer\Deli\Extend\Sesame;
 
 use Chanshige\SmartLock\Sesame;
@@ -14,7 +16,7 @@ class SesameProvider implements ProviderInterface
     ) {
     }
 
-    public function get()
+    public function get(): Sesame
     {
         return Sesame::newInstance($this->apiKey);
     }

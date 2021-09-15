@@ -6,6 +6,9 @@ namespace Fer\Deli\Service\SmartLock\Actor;
 
 use MyCLabs\Enum\Enum;
 
+/**
+ * @psalm-immutable
+ */
 class Room extends Enum
 {
     public const HANOI = 'hanoi';

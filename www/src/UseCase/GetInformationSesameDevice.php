@@ -17,7 +17,7 @@ class GetInformationSesameDevice
     }
 
     /**
-     * @return array{room_name: string, status: string, battery_level: string, battery_voltage: string, updated_at: string}
+     * @return array<string, mixed>
      */
     public function get(Room|string $id): array
     {
