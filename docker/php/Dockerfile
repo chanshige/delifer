@@ -1,4 +1,4 @@
-FROM php:8.0.8-apache-buster
+FROM php:8.1.0-apache-buster
 LABEL maintainer="bell.tanaka@karabiner.tech"
 
 COPY ./docker/php/php.ini /usr/local/etc/php/
@@ -9,6 +9,9 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_NO_INTERACTION 1
 ENV COMPOSER_MEMORY_LIMIT -1
 ENV COMPOSER_HOME /composer
+ENV PATH $PATH:/composer/vendor/bin
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update \
     && apt-get install -y \
@@ -30,8 +33,6 @@ RUN apt-get update \
     && apt-get clean -y \
     && pecl clear-cache \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
     && a2enmod rewrite
 
 WORKDIR /var/www/html
