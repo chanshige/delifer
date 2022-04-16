@@ -15,7 +15,6 @@ class Interactive extends ResourceObject
 {
     public function __construct(
         private SlackShortcutPayloadExtractorInterface $extractor,
-        private LoggerInterface $logger
     ) {
     }
 

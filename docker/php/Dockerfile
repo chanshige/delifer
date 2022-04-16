@@ -1,4 +1,4 @@
-FROM php:8.1.0-apache-buster
+FROM php:8.1.4-apache-buster
 LABEL maintainer="bell.tanaka@karabiner.tech"
 
 COPY ./docker/php/php.ini /usr/local/etc/php/
