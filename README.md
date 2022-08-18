@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="DELIFER" src="https://github.com/karabiner-inc/delifer/blob/master/misc/delifer_logo.png?raw=true" width="500">
+  <img alt="DELIFER" src="https://github.com/chanshige/delifer/blob/master/misc/delifer_logo.png?raw=true" width="500">
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@ Usage
 Contribution
 --
 
-1. Fork ([https://github.com/karabiner-inc/delifer/fork](https://github.com/karabiner-inc/delifer/fork))
+1. Fork ([https://github.com/chanshige/delifer/fork](https://github.com/chanshige/delifer/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Run test suite with the `composer tests` command and confirm that it passes
